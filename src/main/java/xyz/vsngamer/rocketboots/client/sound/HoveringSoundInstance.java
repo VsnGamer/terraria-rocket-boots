@@ -58,14 +58,22 @@ public class HoveringSoundInstance extends TickableSound {
 //        return !instances.containsKey(id) || instances.get(id) == null;
 //    }
 
-    // TODO rewrite
-    public static HoveringSoundInstance getInstance(int id) {
-        if (instances.get(id) == null) {
-            if (Minecraft.getInstance().world != null) {
-                Minecraft.getInstance().getSoundHandler().play(new HoveringSoundInstance((AbstractClientPlayerEntity) Minecraft.getInstance().world.getEntityByID(id)));
-            }
-        }
-        return instances.get(id);
+//    // TODO rewrite
+//    public static HoveringSoundInstance getInstance(int id) {
+//        if (instances.get(id) == null) {
+//            if (Minecraft.getInstance().world != null) {
+//                Minecraft.getInstance().getSoundHandler().play(new HoveringSoundInstance((AbstractClientPlayerEntity) Minecraft.getInstance().world.getEntityByID(id)));
+//            }
+//        }
+//        return instances.get(id);
+//    }
+
+    public static HoveringSoundInstance getOrAddInstance(AbstractClientPlayerEntity pl) {
+        return instances.computeIfAbsent(pl.getEntityId(), integer -> {
+            HoveringSoundInstance inst = new HoveringSoundInstance(pl);
+            Minecraft.getInstance().getSoundHandler().play(inst);
+            return inst;
+        });
     }
 
     public void enableForTick() {

@@ -78,7 +78,7 @@ public class HoverPacket {
         if (!stack.hasTag() || !stack.getTag().contains("hover_time"))
             return false;
 
-        int level = EnchantmentHelper.getEnchantmentLevel(HoverTimeEnchantment.HOVER_DURATION_ENCHANTMENT, stack);
+        int level = EnchantmentHelper.getEnchantmentLevel(HoverTimeEnchantment.HOVER_TIME_ENCHANTMENT, stack);
         return stack.getTag().getInt("hover_time") < (32 + (((double) level / 4) * 32)); // +25% per level
     }
 

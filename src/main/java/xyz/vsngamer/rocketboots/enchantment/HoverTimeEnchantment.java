@@ -7,11 +7,12 @@ import xyz.vsngamer.rocketboots.item.HoverItem;
 
 public class HoverTimeEnchantment extends Enchantment {
 
-    private static final EnchantmentType TYPE = EnchantmentType.create("rocket_boots", item -> item instanceof HoverItem);
-    public static HoverTimeEnchantment HOVER_DURATION_ENCHANTMENT;
+    public static final EnchantmentType TYPE = EnchantmentType.create("rocket_boots", item -> item instanceof HoverItem);
+    public static HoverTimeEnchantment HOVER_TIME_ENCHANTMENT = new HoverTimeEnchantment();
 
     private HoverTimeEnchantment() {
         super(Rarity.RARE, TYPE, new EquipmentSlotType[]{EquipmentSlotType.FEET});
+        setRegistryName("hover_time");
     }
 
 //    public static void register() {
@@ -22,6 +23,7 @@ public class HoverTimeEnchantment extends Enchantment {
 //    public boolean isAcceptableItem(ItemStack stack) {
 //        return super.isAcceptableItem(stack) && stack.getItem() == ModRegistry.HOVER_ITEM;
 //    }
+
 
     @Override
     public int getMinEnchantability(int enchantmentLevel) {
@@ -35,6 +37,6 @@ public class HoverTimeEnchantment extends Enchantment {
 
     @Override
     public int getMaxLevel() {
-        return 3;
+        return 5;
     }
 }

@@ -40,7 +40,7 @@ public class HoverHandler {
             NetworkManager.INSTANCE.sendToServer(new HoverPacket());
 
             HoverPacket.hover(player);
-            HoveringSoundInstance.getInstance(player.getEntityId()).enableForTick();
+            HoveringSoundInstance.getOrAddInstance(player).enableForTick();
         }
 
         lastJumping = player.movementInput.jump;
@@ -79,8 +79,8 @@ public class HoverHandler {
 
     @SubscribeEvent
     public static void joinStartSound(EntityJoinWorldEvent e) {
-        if (Minecraft.getInstance().player != null && e.getEntity() == Minecraft.getInstance().player) {
-            Minecraft.getInstance().getSoundHandler().play(new HoveringSoundInstance(Minecraft.getInstance().player));
-        }
+//        if (Minecraft.getInstance().player != null && e.getEntity() == Minecraft.getInstance().player) {
+//            Minecraft.getInstance().getSoundHandler().play(new HoveringSoundInstance(Minecraft.getInstance().player));
+//        }
     }
 }
